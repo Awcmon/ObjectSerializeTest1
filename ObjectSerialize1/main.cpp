@@ -58,7 +58,7 @@ void GenerateHTML(Site site)
 
 int main()
 {
-	Site website;
+	Site website("Awcmon.github.io");
 	Page index("index");
 
 	Element html;
@@ -98,12 +98,9 @@ int main()
 	index.addElement(html);
 	website.addPage(index);
 
-	std::ofstream ofs;
-	ofs.open("test.awp", std::ofstream::out | std::ofstream::trunc);
-	html.serialize(ofs);
-	ofs.close();
+	GenerateHTML(website);
 
-	//GenerateHTML(website);
+	//website.serializeToFile();
 
 	return 0;
 }

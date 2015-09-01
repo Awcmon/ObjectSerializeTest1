@@ -52,3 +52,16 @@ std::vector<Page> Site::getPages()
 {
 	return pages;
 }
+
+void Site::serializeToFile()
+{
+	std::ofstream ofs;
+	ofs.open(name + ".awsm", std::ofstream::out | std::ofstream::trunc);
+	ofs << docTypeDeclaration << "\n";
+	for (int i = 0; i < (int)pages.size(); i++)
+	{
+		ofs << pages[i].getName() << "\n";
+		pages[i].serializeToFile();
+	}
+	ofs.close();
+}

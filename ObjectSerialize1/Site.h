@@ -20,7 +20,7 @@ public:
 	std::string getDocTypeDeclaration();
 	std::vector<Page> getPages();
 
-	void serialize(std::ostream &os);
+	void serializeToFile();
 
 private:
 	std::string name;

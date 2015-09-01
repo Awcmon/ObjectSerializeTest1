@@ -46,3 +46,14 @@ std::string Page::generateHTML()
 	}
 	return output;
 }
+
+void Page::serializeToFile()
+{
+	std::ofstream ofs;
+	ofs.open(name + ".awp", std::ofstream::out | std::ofstream::trunc);
+	for (int i = 0; i < (int)elementVec.size(); i++)
+	{
+		elementVec[i].serialize(ofs);
+	}
+	ofs.close();
+}
