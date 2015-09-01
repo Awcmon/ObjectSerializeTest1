@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 #include "Element.h"
@@ -18,7 +20,7 @@ public:
 
 	std::string generateHTML();
 
-	void serialize(std::ostream &os);
+	void serializeToFile();
 
 private:
 	std::string name;
