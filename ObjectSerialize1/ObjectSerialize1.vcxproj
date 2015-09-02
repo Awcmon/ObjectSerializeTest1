@@ -80,11 +80,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Page.cpp" />
     <ClCompile Include="Site.cpp" />
+    <ClCompile Include="SiteManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Element.h" />
     <ClInclude Include="Page.h" />
     <ClInclude Include="Site.h" />
+    <ClInclude Include="SiteManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

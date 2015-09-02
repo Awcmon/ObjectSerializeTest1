@@ -40,6 +40,7 @@ int main()
 #include "Site.h"
 #include "Page.h"
 #include "Element.h"
+#include "SiteManager.h"
 
 void GenerateHTML(Site site)
 {
@@ -58,6 +59,7 @@ void GenerateHTML(Site site)
 
 int main()
 {
+	/*
 	Site website("Awcmon.github.io");
 	Page index("index");
 
@@ -101,6 +103,43 @@ int main()
 	GenerateHTML(website);
 
 	//website.serializeToFile();
+	*/
+
+	Site website("Awcmon.github.io");
+	Page index("index");
+	Page about("about");
+
+	Element head("head");
+
+	Element title("title", "", "Hello World!");
+
+	Element body("body");
+
+	Element hello("p", "", "Hello World!");
+
+	Element foodList("ul");
+
+	std::vector<std::string> foods = { "Coffee", "Tea", "Milk" };
+	for (int i = 0; i < (int)foods.size(); i++)
+	{
+		Element foodItem;
+		foodItem.setType("li");
+		foodItem.setContent(foods[i]);
+		foodList.addElement(foodItem);
+	}
+
+	head.addElement(title);
+
+	body.addElement(hello);
+	body.addElement(foodList);
+	index.addElement(body);
+	website.addPage(about);
+	website.addPage(index);
+
+	SiteManager sitemanager(website);
+	sitemanager.addCommonHeader(head);
+	GenerateHTML(sitemanager.bake());
+
 
 	return 0;
 }

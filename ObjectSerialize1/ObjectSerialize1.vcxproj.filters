@@ -27,6 +27,9 @@
     <ClCompile Include="Site.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SiteManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Element.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Site.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SiteManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
