@@ -10,10 +10,12 @@ public:
 	SiteManager(Site _website);
 	~SiteManager();
 
-	std::vector<Element> getCommonHeaders();
-	void addCommonHeader(Element _element);
-	std::vector<Element> getCommonFooters();
-	void addCommonFooter(Element _element);
+	std::vector<Element> getCommonHeads();
+	void addCommonHead(Element _element);
+	std::vector<Element> getCommonBodyHeaders();
+	void addCommonBodyHead(Element _element);
+	std::vector<Element> getCommonBodyFooters();
+	void addCommonBodyFoot(Element _element);
 
 	void setWebsite(Site _website);
 
@@ -21,7 +23,8 @@ public:
 
 private:
 	Site website;
-	std::vector<Element> commonHeaders;
-	std::vector<Element> commonFooters;
+	std::vector<Element> commonHeads;
+	std::vector<Element> commonBodyHeaders;
+	std::vector<Element> commonBodyFooters;
 };
 

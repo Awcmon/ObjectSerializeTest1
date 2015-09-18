@@ -15,24 +15,34 @@ SiteManager::~SiteManager()
 {
 }
 
-std::vector<Element> SiteManager::getCommonHeaders()
+std::vector<Element> SiteManager::getCommonHeads()
 {
-	return commonHeaders;
+	return commonHeads;
 }
 
-void SiteManager::addCommonHeader(Element _element)
+void SiteManager::addCommonHead(Element _element)
 {
-	commonHeaders.push_back(_element);
+	commonHeads.push_back(_element);
 }
 
-std::vector<Element> SiteManager::getCommonFooters()
+std::vector<Element> SiteManager::getCommonBodyHeaders()
 {
-	return commonFooters;
+	return commonBodyHeaders;
 }
 
-void SiteManager::addCommonFooter(Element _element)
+void SiteManager::addCommonBodyHead(Element _element)
 {
-	commonFooters.push_back(_element);
+	commonBodyHeaders.push_back(_element);
+}
+
+std::vector<Element> SiteManager::getCommonBodyFooters()
+{
+	return commonBodyFooters;
+}
+
+void SiteManager::addCommonBodyFoot(Element _element)
+{
+	commonBodyFooters.push_back(_element);
 }
 
 void SiteManager::setWebsite(Site _website)
@@ -51,20 +61,28 @@ Site SiteManager::bake()
 		//Generate new page
 		Page newPage(curPage.getName());
 		Element newHTML("html");
-		for (int i = 0; i < (int)commonHeaders.size(); i++)
+		Element newHead("head");
+		Element newBody("body");
+		for (int i = 0; i < (int)commonHeads.size(); i++)
 		{
-			newHTML.addElement(commonHeaders[i]);
+			newHead.addElement(commonHeads[i]);
 		}
 
+		for (int i = 0; i < (int)commonBodyHeaders.size(); i++)
+		{
+			newBody.addElement(commonBodyHeaders[i]);
+		}
 		for (int i = 0; i < (int)curPage.getElements().size(); i++)
 		{
-			newHTML.addElement(curPage.getElements()[i]);
+			newBody.addElement(curPage.getElements()[i]);
+		}
+		for (int i = 0; i < (int)commonBodyFooters.size(); i++)
+		{
+			newBody.addElement(commonBodyFooters[i]);
 		}
 
-		for (int i = 0; i < (int)commonFooters.size(); i++)
-		{
-			newHTML.addElement(commonFooters[i]);
-		}
+		newHTML.addElement(newHead);
+		newHTML.addElement(newBody);
 		newPage.addElement(newHTML);
 		newSite.addPage(newPage);
 	}

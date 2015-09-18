@@ -36,6 +36,8 @@ int main()
 
 #include <iostream>
 #include <fstream>
+#include <map>
+#include <array>
 
 #include "Site.h"
 #include "Page.h"
@@ -106,38 +108,75 @@ int main()
 	*/
 
 	Site website("Awcmon.github.io");
-	Page index("index");
-	Page about("about");
 
-	Element head("head");
+	{//Generate index
+		Page index("index");
 
-	Element title("title", "", "Hello World!");
+		Element hello("h1", "", "hi im awcmon");
+		Element desc("p", "", "i used to write c++ and make a lot of people angry but i cant anymore so here's a website bye");
 
-	Element body("body");
+		index.addElement(hello);
+		index.addElement(desc);
 
-	Element hello("p", "", "Hello World!");
-
-	Element foodList("ul");
-
-	std::vector<std::string> foods = { "Coffee", "Tea", "Milk" };
-	for (int i = 0; i < (int)foods.size(); i++)
-	{
-		Element foodItem;
-		foodItem.setType("li");
-		foodItem.setContent(foods[i]);
-		foodList.addElement(foodItem);
+		website.addPage(index);
 	}
 
-	head.addElement(title);
+	{//Generate about page
+		Page about("about");
 
-	body.addElement(hello);
-	body.addElement(foodList);
-	index.addElement(body);
-	website.addPage(about);
-	website.addPage(index);
+		Element header("h1", "", "About This Site");
+		Element description("p", "", "This site was made using C++.");
 
+		about.addElement(header);
+		about.addElement(description);
+
+		website.addPage(about);
+	}
+
+	{//Generate projects page
+		Page projects("projects");
+
+		Element header("h1", "", "Projects");
+		Element description("p", "", "List of a bunch of projects here whatever.");
+
+		projects.addElement(header);
+		projects.addElement(description);
+
+		website.addPage(projects);
+	}
+
+	//Generate common elements
 	SiteManager sitemanager(website);
-	sitemanager.addCommonHeader(head);
+
+	Element title("title", "", "Hello World!");
+	sitemanager.addCommonHead(title);
+
+	Element bootstrap("link", "rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"");
+	sitemanager.addCommonHead(bootstrap);
+
+	Element maincss("link", "rel=\"stylesheet\" href=\"main.css\"");
+	sitemanager.addCommonHead(maincss);
+
+	Element navlist("ul", "class=\"pull-right\"");
+	std::vector< std::array<std::string,2> > navbarButtons;
+	navbarButtons.push_back({"Main", "index.html"});
+	navbarButtons.push_back({ "About", "about.html" });
+	navbarButtons.push_back({ "Projects", "projects.html" });
+	for (int i = 0; i < (int)navbarButtons.size(); i++)
+	{
+		Element item("li");
+		item.addElement(Element("a", "href=\"" + navbarButtons[i][1] + "\"", navbarButtons[i][0]));
+		navlist.addElement(item);
+	}
+
+	Element navbar("div", "class=\"nav\"");
+	Element navcontainer("div", "class=\"container\"");
+
+	navcontainer.addElement(navlist);
+	navbar.addElement(navcontainer);
+
+	sitemanager.addCommonBodyHead(navbar);
+
 	GenerateHTML(sitemanager.bake());
 
 
