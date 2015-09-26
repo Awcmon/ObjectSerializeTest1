@@ -115,8 +115,13 @@ int main()
 		Element hello("h1", "", "hi im awcmon");
 		Element desc("p", "", "i used to write c++ and make a lot of people angry but i cant anymore so here's a website bye");
 
-		index.addElement(hello);
-		index.addElement(desc);
+		Element jumbotron("div", "class = \"jumbotron\"");
+		Element jumbotroncontainer("div", "class = \"container\"");
+
+		jumbotroncontainer.addElement(hello);
+		jumbotroncontainer.addElement(desc);
+		jumbotron.addElement(jumbotroncontainer);
+		index.addElement(jumbotron);
 
 		website.addPage(index);
 	}
@@ -124,11 +129,16 @@ int main()
 	{//Generate about page
 		Page about("about");
 
-		Element header("h1", "", "About This Site");
-		Element description("p", "", "This site was made using C++.");
+		Element hello("h1", "", "about this site");
+		Element desc("p", "", "i wrote this site in c++ rofl");
 
-		about.addElement(header);
-		about.addElement(description);
+		Element jumbotron("div", "class = \"jumbotron\"");
+		Element jumbotroncontainer("div", "class = \"container\"");
+
+		jumbotroncontainer.addElement(hello);
+		jumbotroncontainer.addElement(desc);
+		jumbotron.addElement(jumbotroncontainer);
+		about.addElement(jumbotron);
 
 		website.addPage(about);
 	}
@@ -136,11 +146,16 @@ int main()
 	{//Generate projects page
 		Page projects("projects");
 
-		Element header("h1", "", "Projects");
-		Element description("p", "", "List of a bunch of projects here whatever.");
+		Element hello("h1", "", "projects");
+		Element desc("p", "", "some projects");
 
-		projects.addElement(header);
-		projects.addElement(description);
+		Element jumbotron("div", "class = \"jumbotron\"");
+		Element jumbotroncontainer("div", "class = \"container\"");
+
+		jumbotroncontainer.addElement(hello);
+		jumbotroncontainer.addElement(desc);
+		jumbotron.addElement(jumbotroncontainer);
+		projects.addElement(jumbotron);
 
 		website.addPage(projects);
 	}
@@ -159,7 +174,7 @@ int main()
 
 	Element navlist("ul", "class=\"pull-right\"");
 	std::vector< std::array<std::string,2> > navbarButtons;
-	navbarButtons.push_back({"Main", "index.html"});
+	navbarButtons.push_back({ "Main", "index.html" });
 	navbarButtons.push_back({ "About", "about.html" });
 	navbarButtons.push_back({ "Projects", "projects.html" });
 	for (int i = 0; i < (int)navbarButtons.size(); i++)
@@ -168,6 +183,9 @@ int main()
 		item.addElement(Element("a", "href=\"" + navbarButtons[i][1] + "\"", navbarButtons[i][0]));
 		navlist.addElement(item);
 	}
+	//<img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+	
+	Element logo("img", "src=\"namcwologo.png\" class=\"pull-left\"");
 
 	Element navbar("div", "class=\"nav\"");
 	Element navcontainer("div", "class=\"container\"");
@@ -175,6 +193,7 @@ int main()
 	navcontainer.addElement(navlist);
 	navbar.addElement(navcontainer);
 
+	sitemanager.addCommonBodyHead(logo);
 	sitemanager.addCommonBodyHead(navbar);
 
 	GenerateHTML(sitemanager.bake());
