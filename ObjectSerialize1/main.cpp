@@ -113,7 +113,8 @@ int main()
 		Page index("index");
 
 		Element hello("h1", "", "hi im awcmon");
-		Element desc("p", "", "i used to write c++ and make a lot of people angry but i cant anymore so here's a website bye");
+		//Element desc("p", "", "i used to write c++ and make a lot of people angry but i cant anymore so here's a website bye");
+		Element desc("p", "", "i used to write c++ and use vectors and make people angry a lot but i can't anymore heres a website bye");
 
 		Element jumbotron("div", "class = \"jumbotron\"");
 		Element jumbotroncontainer("div", "class = \"container\"");
@@ -188,7 +189,9 @@ int main()
 	}
 	//<img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
 	
-	Element logo("img", "src=\"namcwologo.png\" class=\"pull-left\"");
+	Element logo("img", "src=\"namcwologo.png\" class=\"pull-left\" alt=\"logo\" width=\"230\" height=\"28\" style=\"PADDING-TOP:5px;PADDING-RIGHT:5px;\"");
+	Element logoLink("a", "href=\"index.html\"");
+	logoLink.addElement(logo);
 
 	Element navbar("div", "class=\"nav\"");
 	Element navcontainer("div", "class=\"container\"");
@@ -196,7 +199,7 @@ int main()
 	navcontainer.addElement(navlist);
 	navbar.addElement(navcontainer);
 
-	sitemanager.addCommonBodyHead(logo);
+	sitemanager.addCommonBodyHead(logoLink);
 	sitemanager.addCommonBodyHead(navbar);
 
 	GenerateHTML(sitemanager.bake());
