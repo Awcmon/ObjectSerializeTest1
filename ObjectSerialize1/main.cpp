@@ -174,7 +174,7 @@ int main()
 	sitemanager.addCommonHead(maincss);
 
 	//<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	sitemanager.addCommonHead(Element("meta", "name=\"viewport\" content=\"width = device - width, initial - scale = 1.0\""));
+	sitemanager.addCommonHead(Element("meta", "name=\"viewport\" content=\"width=device-width, initial-scale=1.0\""));
 
 	Element navlist("ul", "class=\"pull-right\"");
 	std::vector< std::array<std::string,2> > navbarButtons;
@@ -189,6 +189,7 @@ int main()
 	}
 	//<img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
 	
+	//Element logo("img", "src=\"namcwologo.png\" class=\"pull-left\" alt=\"logo\" width=\"230\" height=\"28\" style=\"PADDING-TOP:5px;PADDING-RIGHT:5px;\"");
 	Element logo("img", "src=\"namcwologo.png\" class=\"pull-left\" alt=\"logo\" width=\"230\" height=\"28\" style=\"PADDING-TOP:5px;PADDING-RIGHT:5px;\"");
 	Element logoLink("a", "href=\"index.html\"");
 	logoLink.addElement(logo);
@@ -196,11 +197,28 @@ int main()
 	Element navbar("div", "class=\"nav\"");
 	Element navcontainer("div", "class=\"container\"");
 
+	navcontainer.addElement(logoLink);
 	navcontainer.addElement(navlist);
 	navbar.addElement(navcontainer);
 
-	sitemanager.addCommonBodyHead(logoLink);
+	//sitemanager.addCommonBodyHead(logoLink);
 	sitemanager.addCommonBodyHead(navbar);
+
+
+	//<div class = "navbar navbar-inverse navbar-fixed-bottom" role = "navigation">< / div>
+	//<div class="navbar-text pull-left"></div>
+	//Element footerdiv("div", "class=\"footer navbar-inverse navbar-fixed-bottom\" role=\"navigation\"");
+	//Element footerdiv("div", "class=\"footer navbar-default navbar-static-bottom\" role=\"navigation\"");
+	Element footerdiv("footer", "class=\"footer\"");
+	Element footercontainer("div", "class=\"container\"");
+	//Element footerpull("div", "class=\"navbar-text pull-left\"");
+	Element footertext1("p", "", "© Awcmon 2015");
+	
+	//footerpull.addElement(footertext1);
+	footercontainer.addElement(footertext1);
+	footerdiv.addElement(footercontainer);
+
+	sitemanager.addCommonBodyFoot(footerdiv);
 
 	GenerateHTML(sitemanager.bake());
 
