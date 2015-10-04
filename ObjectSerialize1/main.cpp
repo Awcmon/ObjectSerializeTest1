@@ -172,6 +172,9 @@ int main()
 	Element maincss("link", "rel=\"stylesheet\" href=\"main.css\"");
 	sitemanager.addCommonHead(maincss);
 
+	//<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	sitemanager.addCommonHead(Element("meta", "name=\"viewport\" content=\"width = device - width, initial - scale = 1.0\""));
+
 	Element navlist("ul", "class=\"pull-right\"");
 	std::vector< std::array<std::string,2> > navbarButtons;
 	navbarButtons.push_back({ "Main", "index.html" });
